@@ -1,4 +1,4 @@
-const { defineConfig } = require('cypress')
+import { defineConfig } from ('cypress')
 
 // need to install these dependencies
 // npm i lodash del --save-dev
