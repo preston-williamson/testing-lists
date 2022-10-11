@@ -7,6 +7,7 @@
     "cypress:open": "cypress open"
   },
   "devDependencies": {
+    "lodash": "4.17.21",
     "del": "7.0.0",
     "cypress": "^8.7.0",
     "json-server": "0.15.1",

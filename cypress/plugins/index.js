@@ -1,7 +1,8 @@
 const { defineConfig } = require('cypress')
 
-// need to install the "del" module as a dependency
-// npm i del --save-dev
+// need to install these dependencies
+// npm i lodash del --save-dev
+const _ = require('lodash')
 const del = require('del')
 
 module.exports = defineConfig({
@@ -10,10 +11,15 @@ module.exports = defineConfig({
   e2e: {
     setupNodeEvents(on, config) {
       on('after:spec', (spec, results) => {
-        if (results && results.stats.failures === 0 && results.video) {
-          // `del()` returns a promise, so it's important to return it to ensure
-          // deleting the video is finished before moving on
-          return del(results.video)
+        if (results && results.video) {
+          // Do we have failures for any retry attempts?
+          const failures = _.some(results.tests, (test) => {
+            return _.some(test.attempts, { state: 'failed' })
+          })
+          if (!failures) {
+            // delete the video if the spec passed and no tests retried
+            return del(results.video)
+          }
         }
       })
     }
