@@ -7,10 +7,13 @@
     "cypress:open": "cypress open"
   },
   "devDependencies": {
-    "lodash": "4.17.21",
-    "del": "7.0.0",
     "cypress": "^8.7.0",
+    "del": "7.0.0",
     "json-server": "0.15.1",
+    "lodash": "4.17.21",
     "sendmail": "^1.6.1"
+  },
+  "dependencies": {
+    "node-fetch": "^2.6.7"
   }
 }
