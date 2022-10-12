@@ -3,7 +3,7 @@ const { defineConfig } = require('cypress')
 // need to install these dependencies
 // npm i lodash del --save-dev
 const _ = require('lodash')
-const del = require('del')
+import ('del')
 
 module.exports = defineConfig({
   // setupNodeEvents can be defined in either
@@ -18,7 +18,7 @@ module.exports = defineConfig({
           })
           if (!failures) {
             // delete the video if the spec passed and no tests retried
-            return del.deleteSync(results.video)
+            return del(results.video)
           }
         }
       })
