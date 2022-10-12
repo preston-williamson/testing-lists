@@ -1,27 +1,20 @@
-const { defineConfig } = require('cypress')
+// ***********************************************************
+// This example support/index.js is processed and
+// loaded automatically before your test files.
+//
+// This is a great place to put global configuration and
+// behavior that modifies Cypress.
+//
+// You can change the location of this file or turn off
+// automatically serving support files with the
+// 'supportFile' configuration option.
+//
+// You can read more here:
+// https://on.cypress.io/configuration
+// ***********************************************************
 
-// need to install these dependencies
-// npm i lodash del --save-dev
-const _ = require('lodash')
-const del = require('del')
+// Import commands.js using ES2015 syntax:
+import '../plugins/index'
 
-module.exports = defineConfig({
-  // setupNodeEvents can be defined in either
-  // the e2e or component configuration
-  e2e: {
-    setupNodeEvents(on, config) {
-      on('after:spec', (spec, results) => {
-        if (results && results.video) {
-          // Do we have failures for any retry attempts?
-          const failures = _.some(results.tests, (test) => {
-            return _.some(test.attempts, { state: 'failed' })
-          })
-          if (!failures) {
-            // delete the video if the spec passed and no tests retried
-            return del(results.video)
-          }
-        }
-      })
-    }
-  }
-})
+// Alternatively you can use CommonJS syntax:
+// require('./commands')
