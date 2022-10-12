@@ -18,7 +18,7 @@ module.exports = defineConfig({
           })
           if (!failures) {
             // delete the video if the spec passed and no tests retried
-            return del(results.video)
+            return del.deleteSync(results.video)
           }
         }
       })
